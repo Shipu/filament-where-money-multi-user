@@ -1,0 +1,39 @@
+{
+    "name": "shipu/filament-where-money-multi-user",
+    "description": "Multi-user version of filament-where-money",
+    "keywords": [
+        "filament",
+        "laravel-backup",
+        "filament-spatie-laravel-backup"
+    ],
+    "homepage": "https://github.com/shipu/filament-where-money-multi-user",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "shipu",
+            "email": "shipuahamed01@gmail.com"
+        }
+    ],
+    "autoload": {
+            "psr-4": {
+                "Shipu\\FilamentWhereMoneyMultiUser\\": "src/"
+            }
+        },
+    "require": {
+        "jeffgreco13/filament-breezy": "^1.2",
+        "spatie/laravel-package-tools": "^1.9"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Shipu\\FilamentWhereMoneyMultiUser\\FilamentWhereMoneyMultiUserServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    }
+}

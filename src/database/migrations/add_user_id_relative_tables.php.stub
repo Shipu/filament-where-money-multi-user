@@ -1,0 +1,50 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        $activeModels = config('filament-where-money-multi-user.active_models', []);
+
+        foreach ($activeModels as $model) {
+            $table = (new $model)->getTable();
+            Schema::table($table, function (Blueprint $table) {
+                $table->foreignIdFor(config('filament-where-money-multi-user.user_model'))->nullable()->constrained();
+            });
+        }
+
+        Schema::table('categories', function (Blueprint $table) {
+            $table->unique([config('filament-where-money-multi-user.user_foreign_key_column_name'), 'slug']);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        $activeModels = config('filament-where-money-multi-user.active_models', []);
+
+        foreach ($activeModels as $model) {
+            $table = (new $model)->getTable();
+            Schema::table($table, function (Blueprint $table) {
+                $table->dropConstrainedForeignId(config('filament-where-money-multi-user.user_foreign_key_column_name'));
+            });
+        }
+
+        Schema::table('categories', function (Blueprint $table) {
+            $table->dropUnique([config('filament-where-money-multi-user.user_foreign_key_column_name'), 'slug']);
+        });
+    }
+};
