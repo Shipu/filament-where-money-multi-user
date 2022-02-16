@@ -29,7 +29,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Shipu\\FilamentWhereMoneyMultiUser\\FilamentWhereMoneyMultiUserServiceProvider"
+                "Shipu\\FilamentWhereMoneyMultiUser\\Providers\\FilamentWhereMoneyMultiUserServiceProvider"
             ],
             "aliases": {
 
